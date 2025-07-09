@@ -7,7 +7,7 @@ export const useWebSocket = (url: string) => {
   const [lastMessage, setLastMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectTimeoutRef = useRef<number | null>(null);
   const reconnectAttemptsRef = useRef(0);
   const maxReconnectAttempts = 5;
 
@@ -48,7 +48,7 @@ export const useWebSocket = (url: string) => {
         // Attempt to reconnect if not a normal closure
         if (event.code !== 1000 && reconnectAttemptsRef.current < maxReconnectAttempts) {
           const timeout = Math.min(1000 * Math.pow(2, reconnectAttemptsRef.current), 30000);
-          reconnectTimeoutRef.current = setTimeout(() => {
+          reconnectTimeoutRef.current = window.setTimeout(() => {
             reconnectAttemptsRef.current += 1;
             connect();
           }, timeout);
@@ -69,7 +69,7 @@ export const useWebSocket = (url: string) => {
 
   const disconnect = useCallback(() => {
     if (reconnectTimeoutRef.current) {
-      clearTimeout(reconnectTimeoutRef.current);
+      window.clearTimeout(reconnectTimeoutRef.current);
       reconnectTimeoutRef.current = null;
     }
     

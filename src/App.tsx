@@ -27,7 +27,6 @@ import {
   VolumeUp,
   FileCopy,
   Refresh,
-  Settings
 } from '@mui/icons-material';
 import { useCreoleAPI } from './hooks/useCreoleAPI';
 import { useWebSocket } from './hooks/useWebSocket';
