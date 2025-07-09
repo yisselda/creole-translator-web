@@ -30,7 +30,7 @@ import {
 } from '@mui/icons-material';
 import { useCreoleAPI } from './hooks/useCreoleAPI';
 import { useWebSocket } from './hooks/useWebSocket';
-import { Language, TranslationResult, TranscriptionResult } from './types/api';
+import { TranscriptionResult } from './types/api';
 
 interface TabPanelProps {
   children?: React.ReactNode;
